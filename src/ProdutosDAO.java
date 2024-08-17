@@ -1,4 +1,5 @@
 
+import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -39,8 +40,31 @@ public class ProdutosDAO {
         //conn = new conectaDAO().connectDB();
     }
 
-    public ArrayList<ProdutosDTO> listarProdutos() {
+    public List<ProdutosDTO> listarProdutos() {
 
-        return listagem;
+        String sql = "SELECT * FROM produtos";
+        List<ProdutosDTO> produtos = new ArrayList<>();
+
+        try {
+            prep = this.conn.prepareStatement(sql);
+            resultset = prep.executeQuery();
+
+            while (resultset.next()) {
+                ProdutosDTO produto = new ProdutosDTO();
+
+                produto.setId(resultset.getInt("id"));
+                produto.setNome(resultset.getString("nome"));
+                produto.setValor(resultset.getInt("valor"));
+                produto.setStatus(resultset.getString("status"));
+
+                produtos.add(produto);
+
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("Não foi possivel conectar ao banco " + sqle.getMessage());
+        }
+
+        return produtos;
     }
 }

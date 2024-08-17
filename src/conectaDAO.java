@@ -2,21 +2,24 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 public class conectaDAO {
 
     public Connection connectDB() {
-        Connection conn = null;
 
         try {
+            Connection conn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/leiloes_td_sat",
+                    "root",
+                    "285072Gaba#"
+            );
+            System.out.println("Conexao realizada");
+            return conn;
 
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?user=root&password=");
-
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
+        } catch (SQLException sqle) {
+            System.out.println("Erro ao conectar " + sqle.getMessage());
+            return null;
         }
-        return conn;
     }
 
 }

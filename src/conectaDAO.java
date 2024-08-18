@@ -9,9 +9,9 @@ public class conectaDAO {
 
         try {
             Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/leiloes_td_sat",
+                    "jdbc:mysql://localhost:3306/leiloes_td_sat",
                     "root",
-                    "285072Gaba#"
+                    "password"
             );
             System.out.println("Conexao realizada");
             return conn;

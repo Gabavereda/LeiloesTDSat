@@ -6,6 +6,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
 
     public cadastroVIEW() {
         initComponents();
+        System.out.println("Não esqueça de configurar o banco em conectaDAO");
     }
 
     @SuppressWarnings("unchecked")

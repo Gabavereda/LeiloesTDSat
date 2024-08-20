@@ -29,7 +29,6 @@ public class ProdutosDAO {
 
             prep.setString(1, produto.getNome());
             prep.setInt(2, produto.getValor());
-//            prep.setString(3, produto.getStatus());
 
             prep.execute();
 
@@ -66,5 +65,23 @@ public class ProdutosDAO {
         }
 
         return produtos;
+    }
+
+    public void venderProduto(ProdutosDTO produto) {
+
+        String sql = "UPDATE PRODUTOS SET status=? where id=?";
+
+        try {
+            PreparedStatement prep = this.conn.prepareStatement(sql);
+
+            prep.setString(1, produto.getStatus());
+            prep.setInt(2,produto.getId());
+            
+            prep.execute();
+
+        } catch (SQLException sqle) {
+            System.out.println("Não foi possivel atualizar no banco " + sqle.getMessage());
+        }
+
     }
 }

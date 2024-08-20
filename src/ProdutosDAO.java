@@ -67,6 +67,35 @@ public class ProdutosDAO {
         return produtos;
     }
 
+    public List<ProdutosDTO> listarProdutosVendidos() {
+        String sql = "SELECT * FROM produtos WHERE status='vendido' ";
+        List<ProdutosDTO> produtos = new ArrayList<>();
+
+        try {
+
+            prep = this.conn.prepareStatement(sql);
+            resultset = prep.executeQuery();
+
+            while (resultset.next()) {
+                ProdutosDTO produto = new ProdutosDTO();
+
+                produto.setId(resultset.getInt("id"));
+                produto.setNome(resultset.getString("nome"));
+                produto.setValor(resultset.getInt("valor"));
+                produto.setStatus(resultset.getString("status"));
+
+                produtos.add(produto);
+
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("Não foi possivel conectar ao banco " + sqle.getMessage());
+
+        }
+        return produtos;
+
+    }
+
     public void venderProduto(ProdutosDTO produto) {
 
         String sql = "UPDATE PRODUTOS SET status=? where id=?";

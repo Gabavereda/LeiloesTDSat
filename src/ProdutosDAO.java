@@ -75,8 +75,8 @@ public class ProdutosDAO {
             PreparedStatement prep = this.conn.prepareStatement(sql);
 
             prep.setString(1, produto.getStatus());
-            prep.setInt(2,produto.getId());
-            
+            prep.setInt(2, produto.getId());
+
             prep.execute();
 
         } catch (SQLException sqle) {

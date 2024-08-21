@@ -1,7 +1,6 @@
 
 import javax.swing.JOptionPane;
 
-
 public class cadastroVIEW extends javax.swing.JFrame {
 
     public cadastroVIEW() {
@@ -23,6 +22,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         btnCadastrar = new javax.swing.JButton();
         btnProdutos = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +58,15 @@ public class cadastroVIEW extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Consultar Vendas");
+        jButton1.setMaximumSize(new java.awt.Dimension(132, 23));
+        jButton1.setMinimumSize(new java.awt.Dimension(132, 23));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,8 +82,6 @@ public class cadastroVIEW extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(202, 202, 202)
@@ -90,7 +97,15 @@ public class cadastroVIEW extends javax.swing.JFrame {
                                 .addComponent(cadastroValor, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(37, 37, 37)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -115,7 +130,9 @@ public class cadastroVIEW extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(btnProdutos)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnProdutos)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
         );
 
@@ -131,16 +148,15 @@ public class cadastroVIEW extends javax.swing.JFrame {
         ProdutosDTO produto = new ProdutosDTO();
         String nome = cadastroNome.getText();
         String valor = cadastroValor.getText();
-//        String status = "A Venda";
+
         produto.setNome(nome);
         produto.setValor(Integer.parseInt(valor));
-//        produto.setStatus(status);
 
         ProdutosDAO produtodao = new ProdutosDAO();
         produtodao.cadastrarProduto(produto);
-        
-        JOptionPane.showMessageDialog(null,"Produto Cadastrado com sucesso!");
-        
+
+        JOptionPane.showMessageDialog(null, "Produto Cadastrado com sucesso!");
+
         cadastroNome.setText("");
         cadastroValor.setText("");
 
@@ -150,6 +166,11 @@ public class cadastroVIEW extends javax.swing.JFrame {
         listagemVIEW listagem = new listagemVIEW();
         listagem.setVisible(true);
     }//GEN-LAST:event_btnProdutosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        vendasView telaVendas = new vendasView();
+        telaVendas.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,6 +212,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
     private javax.swing.JButton btnProdutos;
     private javax.swing.JTextField cadastroNome;
     private javax.swing.JTextField cadastroValor;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

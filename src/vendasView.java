@@ -165,7 +165,5 @@ public class vendasView extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
-
     }
-
 }

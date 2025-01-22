@@ -111,6 +111,5 @@ public class ProdutosDAO {
         } catch (SQLException sqle) {
             System.out.println("Não foi possivel atualizar no banco " + sqle.getMessage());
         }
-
     }
 }
